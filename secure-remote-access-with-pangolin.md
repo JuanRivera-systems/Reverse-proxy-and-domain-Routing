@@ -105,24 +105,7 @@ Public route:    https://node.example.com
 Expected role:   Pangolin/Traefik terminates HTTPS and forwards to the HTTP backend
 ```
 
----
 
-## Why This Matters for Network Engineering
-
-This project shows more than simply running a web app. It demonstrates several network and infrastructure skills:
-
-| Skill | How the project demonstrates it |
-|---|---|
-| DNS management | Subdomains were mapped to service roles and ingress targets. |
-| Reverse proxying | HTTPS hostnames were routed to internal HTTP services. |
-| Private service exposure | Backend services were kept on LAN/private addresses. |
-| Firewall awareness | Only required ingress paths were intended to be exposed. |
-| TLS troubleshooting | Certificate and hostname mismatches had to be identified. |
-| WebSocket troubleshooting | Console access required correct `wss://` routing through the proxy. |
-| Linux administration | Services were managed through systemd, Nginx, Docker, and config files. |
-| Documentation | The final architecture and troubleshooting process were documented for repeatability. |
-
----
 
 ## Key Configuration Areas
 
@@ -173,41 +156,11 @@ Internal client
 
 ## Security Considerations
 
-The final design should be presented as security-conscious, not as a claim of being perfectly secure.
-
 Implemented or recommended controls:
 
-- Avoid publishing public IP addresses in documentation.
 - Avoid exposing backend services directly when proxy/tunnel access is available.
 - Use HTTPS hostnames instead of raw IP and port access.
 - Limit public resources to only the services that need external access.
 - Use access rules or identity checks where available.
-- Keep service secrets, tunnel tokens, and API keys out of GitHub.
-- Use sanitized config examples instead of full production config files.
 - Keep internal IPs, server names, and admin emails redacted in public screenshots.
 
----
-
-## Sanitized Repository Placement
-
-Recommended portfolio structure:
-
-```text
-network-engineering-portfolio/
-├── diagrams/
-│   ├── pangolin-access-flow.png
-│   └── domain-routing-flow.png
-├── docs/
-│   ├── secure-remote-access-with-pangolin.md
-│   └── pangolin-connectivity-troubleshooting.md
-└── sanitized-configs/
-    ├── example-dns-records.md
-    ├── example-pangolin-resource-map.md
-    └── example-reverse-proxy-notes.md
-```
-
----
-
-## Resume / Portfolio Summary
-
-Built and documented a secure remote-access architecture for self-hosted infrastructure using Pangolin, Traefik, custom DNS, HTTPS routing, and internal Proxmox-hosted services. Configured service-specific subdomains to route external traffic to selected internal applications while keeping backend services on private LAN addresses. Troubleshot DNS, TLS, reverse proxy, WebSocket, and backend service connectivity issues across Linux VMs and Docker-based services.
